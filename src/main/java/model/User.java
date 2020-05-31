@@ -1,20 +1,54 @@
 package model;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
-@DiscriminatorValue(value = "GenericUser")
-public class User extends Person
+@Table(name = "user")
+public class User
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
     public User()
     {
+
     }
 
-    public User(String firstName, String lastName, String username, String password, String age, String city)
+    public int getId()
     {
-        super(firstName, lastName, username, password, age, city);
+        return id;
     }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
 }
